@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif SC", "STSong", "SimSun", "Source Han Serif SC", serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --color-ink-50: #f8f6f0;
+  --color-ink-100: #eee9dd;
+  --color-ink-200: #d4cbbe;
+  --color-ink-300: #b8aa9a;
+  --color-ink-400: #9a8a7a;
+  --color-ink-500: #7d6d5d;
+  --color-ink-600: #5f5143;
+  --color-ink-700: #42362b;
+  --color-ink-800: #2a221b;
+  --color-ink-900: #1a1510;
+  --color-gold-400: #c9a84c;
+  --color-gold-500: #b8912e;
+  --color-gold-600: #9e7825;
+  --color-red-400: #c44e52;
+  --color-red-500: #a83236;
+  --color-jade-400: #5b8c6f;
+  --color-jade-500: #3d7a55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #0f0a06;
+  color: var(--color-ink-100);
+  min-height: 100vh;
+}
+
+.bg-ink-paper {
+  background: linear-gradient(135deg, #1a1510 0%, #0f0a06 50%, #1a1510 100%);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1);
+}
+
+.hexagram-line {
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hexagram-line.yin {
+  background: linear-gradient(90deg,
+    var(--color-ink-100) 0%,
+    var(--color-ink-100) 40%,
+    transparent 40%,
+    transparent 60%,
+    var(--color-ink-100) 60%,
+    var(--color-ink-100) 100%
+  );
+  height: 4px;
+  border-radius: 2px;
+}
+
+.hexagram-line.yang {
+  background: var(--color-ink-100);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.hexagram-line.moving {
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--color-gold-400); }
+  50% { box-shadow: 0 0 20px var(--color-gold-400), 0 0 40px var(--color-gold-500); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ink-spread {
+  0% { opacity: 0; transform: scale(0.8); filter: blur(8px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+.animate-ink {
+  animation: ink-spread 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.15;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.3), transparent);
+}
+
+.card-mystic {
+  background: linear-gradient(145deg, rgba(42, 34, 27, 0.9), rgba(26, 21, 16, 0.95));
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card-mystic:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.coin {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: radial-gradient(circle at 35% 35%, #c9a84c, #8a6e2b);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3), inset 0 -3px 6px rgba(0,0,0,0.3), inset 0 3px 6px rgba(255,255,255,0.2);
+  border: 2px solid #b8912e;
+}
+
+.coin-toss {
+  animation: coin-toss 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes coin-toss {
+  0% { transform: rotateX(0deg) rotateY(0deg) translateY(0); }
+  25% { transform: rotateX(720deg) rotateY(360deg) translateY(-60px); }
+  50% { transform: rotateX(1440deg) rotateY(720deg) translateY(-40px); }
+  75% { transform: rotateX(2160deg) rotateY(1080deg) translateY(-20px); }
+  100% { transform: rotateX(2880deg) rotateY(1440deg) translateY(0); }
+}
+
+.btn-mystic {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: var(--color-gold-400);
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-serif);
+}
+
+.btn-mystic:hover {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.3), rgba(201, 168, 76, 0.1));
+  border-color: var(--color-gold-400);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+}
+
+.btn-mystic:active {
+  transform: scale(0.97);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.3);
+  border-radius: 2px;
+}
+
+/* ===== 奇门遁甲 Hover 动画 ===== */
+.qimen-cell {
+  transition: all 0.2s ease;
+}
+
+.qimen-cell:hover rect:first-of-type + rect + rect {
+  stroke: rgba(201, 168, 76, 0.5) !important;
+  stroke-width: 1.2 !important;
+}
+
+.qimen-cell:hover rect:nth-child(2) {
+  fill: rgba(201, 168, 76, 0.04) !important;
+}
+
+.qimen-grid-svg {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+@keyframes pulse-glow-border {
+  0%, 100% {
+    stroke-opacity: 0.3;
+    filter: drop-shadow(0 0 3px rgba(201, 168, 76, 0.2));
+  }
+  50% {
+    stroke-opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.4));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow-border 2s ease-in-out infinite;
+}
+
+/* 值符箭头旋转指向动画 */
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.qimen-arrow {
+  animation: arrow-bounce 1.5s ease-in-out infinite;
+}
+
+/* 奇门 Modal 移动端适配 */
+@media (max-width: 640px) {
+  .qimen-modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .qimen-modal-content {
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 85vh !important;
+    margin-top: 40px;
+    border-bottom: none !important;
+  }
+}
+
+/* 奇门网格移动端缩放 */
+@media (max-width: 380px) {
+  .qimen-grid-svg {
+    max-width: 320px !important;
+  }
+}
