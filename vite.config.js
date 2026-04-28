@@ -1,9 +1,14 @@
-cat > vite.config.js << 'EOF'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [tailwindcss(), react()],
   base: '/mystic-decider/',
+  server: {
+    hmr: {
+      host: 'localhost',
+      port: 5175,
+    },
+  },
 })
-EOF

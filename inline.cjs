@@ -19,19 +19,17 @@ files.forEach(f => {
   }
 });
 
-let result = html;
-
-result = result.replace(
-  '<link rel="stylesheet" crossorigin href="/assets/index-CFgrgf91.css">',
+// Replace CSS link with inline <style>
+result = html.replace(
+  /<link rel="stylesheet" crossorigin href="[^"]+\.css">/,
   `<style>${cssContent}</style>`
 );
 
+// Replace JS module script with inline <script>
 result = result.replace(
-  '<script type="module" crossorigin src="/assets/index-BU0v-NR8.js"></script>',
+  /<script type="module" crossorigin src="[^"]+\.js"><\/script>/,
   `<script type="module">${jsContent}</script>`
 );
-
-result = result.replace(/href="\/assets\/[^"]+\.css"/g, '');
 
 fs.writeFileSync(path.join(__dirname, 'mystic-decider.html'), result, 'utf-8');
 console.log('Done! Created mystic-decider.html');
