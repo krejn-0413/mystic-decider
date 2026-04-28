@@ -21,7 +21,20 @@ export default function Home() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="text-center"
       >
-        <div className="text-5xl mb-4 animate-float">☯</div>
+        <div className="text-5xl mb-4 animate-float">
+          <svg width="56" height="56" viewBox="0 0 100 100" className="mx-auto">
+            <defs>
+              <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#f4c430" />
+                <stop offset="100%" stopColor="#c9a84c" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="48" fill="none" stroke="url(#tg)" strokeWidth="2" opacity="0.6" />
+            <path d="M50 2 A48 48 0 0 0 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2 Z" fill="url(#tg)" opacity="0.9" />
+            <circle cx="50" cy="26" r="8" fill="#0d0a08" />
+            <circle cx="50" cy="74" r="8" fill="url(#tg)" opacity="0.9" />
+          </svg>
+        </div>
         <h1 className="font-serif text-3xl md:text-4xl text-gold-400 text-shadow-glow tracking-wider">
           易卜
         </h1>
@@ -70,8 +83,8 @@ export default function Home() {
             whileTap={{ scale: 0.95 }}
             className="btn-mystic w-full flex items-center justify-center gap-3 py-3"
             style={{
-              borderColor: 'rgba(91,140,111,0.4)',
-              background: 'linear-gradient(135deg, rgba(91,140,111,0.08), rgba(91,140,111,0.02))',
+              borderColor: 'rgba(244,196,48,0.4)',
+              background: 'linear-gradient(135deg, rgba(244,196,48,0.08), rgba(244,196,48,0.02))',
             }}
           >
             <Compass size={20} />

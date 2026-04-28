@@ -94,7 +94,18 @@ export default function PwaInstallPrompt() {
 
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(244,196,48,0.15), rgba(201,168,76,0.1))', border: '1px solid rgba(244,196,48,0.2)' }}>
-                <span className="text-lg">☯</span>
+                <svg width="24" height="24" viewBox="0 0 100 100">
+                  <defs>
+                    <linearGradient id="tg2" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#f4c430" />
+                      <stop offset="100%" stopColor="#c9a84c" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="url(#tg2)" strokeWidth="2" opacity="0.5" />
+                  <path d="M50 4 A46 46 0 0 0 50 96 A23 23 0 0 1 50 50 A23 23 0 0 0 50 4 Z" fill="url(#tg2)" opacity="0.85" />
+                  <circle cx="50" cy="27" r="7" fill="#0d0a08" />
+                  <circle cx="50" cy="73" r="7" fill="url(#tg2)" opacity="0.85" />
+                </svg>
               </div>
               <div>
                 <p className="font-serif text-xs text-gold-400 tracking-wider">安装 易卜</p>

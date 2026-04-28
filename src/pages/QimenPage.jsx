@@ -19,7 +19,12 @@ function toBeijingDatetimeString() {
   var now = new Date();
   var utc = now.getTime() + now.getTimezoneOffset() * 60000;
   var bj = new Date(utc + 8 * 3600000);
-  return bj.toISOString().slice(0, 16);
+  var y = bj.getFullYear();
+  var m = String(bj.getMonth() + 1).padStart(2, '0');
+  var d = String(bj.getDate()).padStart(2, '0');
+  var h = String(bj.getHours()).padStart(2, '0');
+  var min = String(bj.getMinutes()).padStart(2, '0');
+  return y + '-' + m + '-' + d + 'T' + h + ':' + min;
 }
 
 function parseDatetime(str) {
@@ -317,7 +322,7 @@ export default function QimenPage() {
               <button
                 onClick={function () { navigate('/lost-item'); }}
                 className="btn-mystic flex items-center gap-2 px-4 py-2 text-xs"
-                style={{ borderColor: 'rgba(91,140,175,0.3)' }}
+                style={{ borderColor: 'rgba(244,196,48,0.3)' }}
               >
                 <ArrowLeft size={14} />
                 <span className="font-serif">返回六爻</span>
@@ -334,7 +339,7 @@ export default function QimenPage() {
               <button
                 onClick={handleSave}
                 className="btn-mystic flex items-center gap-2 px-4 py-2 text-xs"
-                style={{ borderColor: 'rgba(91,140,111,0.3)' }}
+                style={{ borderColor: 'rgba(244,196,48,0.3)' }}
               >
                 <Save size={14} />
                 <span className="font-serif">保存到历史</span>

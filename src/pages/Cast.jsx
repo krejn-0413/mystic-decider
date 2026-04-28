@@ -24,20 +24,22 @@ function Coin({ face, isAnimating, delay = 0 }) {
         boxShadow: '0 4px 20px rgba(184,134,11,0.4), inset 0 2px 6px rgba(255,215,0,0.3)',
       }}
       animate={isAnimating ? {
-        rotateX: [0, 360, 720, 1080, 1440, 1800],
-        rotateY: [0, 180, 360, 540, 720, 900],
-        y: [0, -60, -30, -70, -20, 0],
-        scale: [1, 1.12, 1.02, 1.08, 0.95, 1],
+        rotateX: [0, 720, 1440, 2160, 2700, 2880],
+        rotateY: [0, 360, 720, 1080, 360, 0],
+        rotateZ: [0, -6, 8, -4, 6, 0],
+        y: [0, -80, -50, -100, -30, 0],
+        scale: [1, 1.12, 1.06, 1.18, 1.02, 1],
       } : {
         rotateX: 0,
         rotateY: 0,
+        rotateZ: 0,
         y: 0,
         scale: 1,
       }}
       transition={isAnimating ? {
-        duration: 0.9,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: delay * 0.08,
+        duration: 1.2,
+        ease: [0.15, 0.6, 0.35, 1],
+        delay: delay * 0.1,
       } : {
         type: 'spring',
         stiffness: 200,

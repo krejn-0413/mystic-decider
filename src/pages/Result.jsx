@@ -172,8 +172,30 @@ export default function Result() {
         {result.question && (
           <p className="text-ink-400 text-xs mb-3 italic">「{result.question}」</p>
         )}
-        <HexagramSymbol unicode={hex.unicode} size="large" />
-        <h2 className="font-serif text-2xl text-gold-400 mt-2 tracking-wider">{hex.name}</h2>
+        <div className="relative flex items-center justify-center py-5">
+          <motion.div
+            className="absolute w-28 h-28 rounded-full pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, rgba(244,196,48,0.12), transparent 70%)',
+            }}
+            animate={{
+              scale: [1, 1.08, 1],
+              opacity: [0.4, 0.7, 0.4],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          <div className="absolute w-[92px] h-[92px] rounded-full border border-gold-400/10" />
+          <div className="absolute w-[78px] h-[78px] rounded-full border border-gold-400/20" style={{ borderStyle: 'dashed' }} />
+          <div className="absolute w-[64px] h-[64px] rounded-full border border-gold-400/15" />
+          <div className="relative z-10 drop-shadow-[0_0_12px_rgba(244,196,48,0.3)]">
+            <HexagramSymbol unicode={hex.unicode} size="large" />
+          </div>
+        </div>
+        <h2 className="font-serif text-2xl text-gold-400 mt-1 tracking-wider">{hex.name}</h2>
         <p className="text-ink-400 text-xs mt-1">{hex.pinyin} · {hex.meaning}</p>
         <div className="mt-3">
           <HexagramDisplay yao={hex.yao} changingYao={result.changingYao} />

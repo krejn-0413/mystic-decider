@@ -76,7 +76,7 @@ const sections = [
 ];
 
 const TRIGRAM_FILTERS = [
-  { key: 'all', label: '全部', symbol: '☯' },
+  { key: 'all', label: '全部', symbol: '⚊' },
   { key: '乾', label: '乾', symbol: '☰' },
   { key: '兑', label: '兑', symbol: '☱' },
   { key: '离', label: '离', symbol: '☲' },
@@ -89,6 +89,8 @@ const TRIGRAM_FILTERS = [
 
 export default function Lore() {
   const [expandedSection, setExpandedSection] = useState('intro');
+  const [navExpanded, setNavExpanded] = useState(false);
+  const [qimenExpanded, setQimenExpanded] = useState(false);
   const [selectedHex, setSelectedHex] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [trigramFilter, setTrigramFilter] = useState('all');
@@ -170,18 +172,32 @@ export default function Lore() {
       </div>
 
       {/* 六十四卦导航 */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-serif text-sm text-gold-400 tracking-wider">
-            六十四卦导航
-            <span className="text-ink-500 text-[10px] ml-2 font-sans">
+      <div className="card-mystic overflow-hidden">
+        <button
+          onClick={() => setNavExpanded(!navExpanded)}
+          className="w-full p-4 flex items-center justify-between text-left"
+        >
+          <div className="flex items-center gap-2">
+            <Layers size={14} className="text-gold-400" />
+            <span className="font-serif text-sm text-ink-200">六十四卦导航</span>
+            <span className="text-ink-500 text-[10px] font-sans">
               {filteredHexagrams.length} / 64
             </span>
-          </h3>
-          <div className="flex items-center gap-2">
-            <Layers size={12} className="text-ink-500" />
           </div>
-        </div>
+          <ChevronDown
+            size={14}
+            className={`text-ink-400 transition-transform ${navExpanded ? 'rotate-180' : ''}`}
+          />
+        </button>
+        <AnimatePresence>
+          {navExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="px-4 pb-4 border-t border-ink-700/30 pt-3">
 
         {/* 搜索框 */}
         <div className="relative mb-3">
@@ -230,7 +246,7 @@ export default function Lore() {
                 <div className="text-lg group-hover:scale-110 transition-transform">{h.unicode}</div>
                 <div className="text-[10px] text-ink-400 font-serif mt-0.5">{h.name}</div>
                 <div className="text-[8px] text-ink-600 mt-0.5">
-                  {h.upperTrigram}☯{h.lowerTrigram}
+                  {h.upperTrigram}<span className="text-gold-400/40 mx-0.5">⚊</span>{h.lowerTrigram}
                 </div>
               </motion.button>
             ))}
@@ -242,6 +258,10 @@ export default function Lore() {
             </p>
           </div>
         )}
+      </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* 卦象详情弹窗 */}
@@ -390,20 +410,45 @@ export default function Lore() {
       </AnimatePresence>
 
       {/* 奇门遁甲简述 */}
-      <div className="card-mystic p-4">
-        <h3 className="font-serif text-sm text-gold-400 mb-2 tracking-wider">奇门遁甲简述</h3>
-        <p className="text-ink-400 text-xs leading-relaxed font-serif">
-          奇门遁甲是中国古代最高层次的预测学之一，与六爻同源而异流。
-          它以时间、空间、方位为要素，结合天时（天盘）、地利（地盘）、人和（人盘）进行综合判断。
-          
-          三层盘式：
-          • 天盘九星：天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英
-          • 人盘八门：休、生、伤、杜、景、死、惊、开
-          • 地盘九宫：一坎二坤三震四巽五中六乾七兑八艮九离
+      <div className="card-mystic overflow-hidden">
+        <button
+          onClick={() => setQimenExpanded(!qimenExpanded)}
+          className="w-full p-4 flex items-center justify-between text-left"
+        >
+          <div className="flex items-center gap-2">
+            <BookOpen size={14} className="text-gold-400" />
+            <span className="font-serif text-sm text-ink-200">奇门遁甲简述</span>
+          </div>
+          <ChevronDown
+            size={14}
+            className={`text-ink-400 transition-transform ${qimenExpanded ? 'rotate-180' : ''}`}
+          />
+        </button>
+        <AnimatePresence>
+          {qimenExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="px-4 pb-4 border-t border-ink-700/30 pt-3">
+                <p className="text-ink-400 text-xs leading-relaxed font-serif">
+                  奇门遁甲是中国古代最高层次的预测学之一，与六爻同源而异流。
+                  它以时间、空间、方位为要素，结合天时（天盘）、地利（地盘）、人和（人盘）进行综合判断。
+                  
+                  三层盘式：
+                  • 天盘九星：天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英
+                  • 人盘八门：休、生、伤、杜、景、死、惊、开
+                  • 地盘九宫：一坎二坤三震四巽五中六乾七兑八艮九离
 
-          奇门遁甲强调"趋吉避凶"，通过选择最佳的时间和方位，达到事半功倍的效果。
-          与六爻侧重于"问事"不同，奇门更侧重于"择时择方"，二者相辅相成。
-        </p>
+                  奇门遁甲强调"趋吉避凶"，通过选择最佳的时间和方位，达到事半功倍的效果。
+                  与六爻侧重于"问事"不同，奇门更侧重于"择时择方"，二者相辅相成。
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

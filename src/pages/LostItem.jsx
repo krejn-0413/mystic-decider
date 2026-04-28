@@ -17,10 +17,15 @@ const ITEM_TYPES = [
 ];
 
 function toBeijingDatetimeString() {
-  const now = new Date();
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  const bj = new Date(utc + 8 * 3600000);
-  return bj.toISOString().slice(0, 16);
+  var now = new Date();
+  var utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  var bj = new Date(utc + 8 * 3600000);
+  var y = bj.getFullYear();
+  var m = String(bj.getMonth() + 1).padStart(2, '0');
+  var d = String(bj.getDate()).padStart(2, '0');
+  var h = String(bj.getHours()).padStart(2, '0');
+  var min = String(bj.getMinutes()).padStart(2, '0');
+  return y + '-' + m + '-' + d + 'T' + h + ':' + min;
 }
 
 export default function LostItem() {
@@ -200,9 +205,20 @@ export default function LostItem() {
               <motion.span
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-                className="inline-block"
+                className="inline-flex items-center justify-center w-5 h-5"
               >
-                ☯
+                <svg width="18" height="18" viewBox="0 0 100 100">
+                  <defs>
+                    <linearGradient id="tgl" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#f4c430" />
+                      <stop offset="100%" stopColor="#c9a84c" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="url(#tgl)" strokeWidth="2" opacity="0.5" />
+                  <path d="M50 4 A46 46 0 0 0 50 96 A23 23 0 0 1 50 50 A23 23 0 0 0 50 4 Z" fill="url(#tgl)" opacity="0.85" />
+                  <circle cx="50" cy="27" r="7" fill="#0d0a08" />
+                  <circle cx="50" cy="73" r="7" fill="url(#tgl)" opacity="0.85" />
+                </svg>
               </motion.span>
               <span className="font-serif">起卦中...</span>
             </>
