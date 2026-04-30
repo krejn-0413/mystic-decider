@@ -13,6 +13,6 @@ createRoot(document.getElementById('root')).render(
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/mystic-decider/sw.js');
+    navigator.serviceWorker.register('/sw.js');
   });
 }
