@@ -11,7 +11,7 @@ import QimenPage from './pages/QimenPage';
 
 export default function App() {
   return (
-    <BrowserRouter basename="/mystic-decider">
+    <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
